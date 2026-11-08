@@ -36,6 +36,8 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("clear", help="清除所有已完成任务")
 
+    sub.add_parser("stats", help="显示任务统计")
+
     return parser
 
 
@@ -80,6 +82,10 @@ def main(argv: list[str] | None = None) -> int:
         elif args.command == "clear":
             count = store.clear_done()
             print(f"清除了 {count} 条已完成任务")
+
+        elif args.command == "stats":
+            s = store.stats()
+            print(f"总计 {s['total']} 条，已完成 {s['done']} 条，完成率 {s['rate']}%")
 
     except (KeyError, ValueError) as exc:
         print(f"错误：{exc}", file=sys.stderr)

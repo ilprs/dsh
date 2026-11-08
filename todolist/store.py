@@ -97,3 +97,10 @@ class TaskStore:
         self._tasks = [task for task in self._tasks if not task.done]
         self.save()
         return before - len(self._tasks)
+
+    def stats(self) -> dict[str, float | int]:
+        """返回任务统计：总数、已完成数、完成率（0-100）。"""
+        total = len(self._tasks)
+        done = sum(1 for task in self._tasks if task.done)
+        rate = (done / total * 100) if total else 0.0
+        return {"total": total, "done": done, "rate": round(rate, 1)}

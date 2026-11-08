@@ -71,6 +71,19 @@ class TaskStoreTest(unittest.TestCase):
         with self.assertRaises(Exception):
             TaskStore(self.path)
 
+    def test_stats_on_empty_store(self) -> None:
+        self.assertEqual(self.store.stats(), {"total": 0, "done": 0, "rate": 0.0})
+
+    def test_stats_counts_and_rate(self) -> None:
+        a = self.store.add("一")
+        self.store.add("二")
+        self.store.add("三")
+        self.store.done(a.id)
+        stats = self.store.stats()
+        self.assertEqual(stats["total"], 3)
+        self.assertEqual(stats["done"], 1)
+        self.assertEqual(stats["rate"], 33.3)
+
 
 if __name__ == "__main__":
     unittest.main()
