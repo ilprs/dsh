@@ -1,16 +1,49 @@
-# OS
+# ---- 操作系统 ----
+.DS_Store
 Thumbs.db
 Desktop.ini
-.DS_Store
+$RECYCLE.BIN/
 
-# Editors
-.vscode/
+# ---- 编辑器 / IDE ----
 .idea/
+.vscode/*
+!.vscode/extensions.json
 *.swp
+*.swo
+*~
 
-# Logs
+# ---- 依赖 ----
+node_modules/
+vendor/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# ---- 构建产物 ----
+dist/
+build/
+out/
+target/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+
+# ---- 日志与缓存 ----
 *.log
+logs/
+.cache/
+.tmp/
+tmp/
 
-# Env / secrets
+# ---- 环境变量与密钥 ----
 .env
 .env.*
+!.env.example
+*.pem
+*.key
+*.p12
